@@ -40,34 +40,16 @@ nav > a:hover {
 .site-home {
 	text-align: center;
 	color: #FFFFFF;
-	position: relative;
-	z-index: 0;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	width: 100vw;
 	height: 94vh;
-	background-image: url("../img/home-bg.jpg");
+	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../img/home-bg.jpg");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
-}
-
-.site-home::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,.7);
-  z-index: 2;
-}
-
-.site-home > * {
-	position: relative;
-	z-index: 3;
 }
 
 .site-home > h1 {
