@@ -1,1 +1,262 @@
-// Write your styles here
+@mixin styleButton($bg-color) {
+  	font-size: 1vw;
+	color: white;
+	background-color: $bg-color;
+	border: none;
+	height: 3vw;
+}
+
+@mixin styleLinks($color) {
+  	font-size: 1vw;
+	color: $color;
+}
+
+%before-element {
+	content: "";
+	position: absolute;
+	background-color: $before-color;
+	z-index: -1;
+}
+
+body {
+	margin: 0;
+	background-color: $background-color;
+
+	header {
+		font-family: 'Source Sans Pro', sans-serif;
+		color: $text-color1;
+		padding: 3vh 5vw;
+		height: 40vw;
+		background-image: $background-image;
+		background-size: cover;
+		background-position: center;
+		border-radius: 0 0 50% 0;
+
+		.landing-logo {
+			display: flex;
+			align-items: center;
+			font-weight: map-get($font-weights, "m");
+
+			img {
+				wwidth: 3.5vw;
+				height: 3.5vw;
+				margin-right: 1vw;
+			}
+
+			p {
+				margin: 0;
+				text-align: center;
+				font-size: 2vw;
+			}
+
+			span {
+				font-size: 0.8vw;
+				display: block;
+			}
+		}
+
+		.header_heading {
+			position: relative;
+			z-index: 9999;
+			margin: 2vw 0;
+			width: 50%;
+			font-size: 5vw;
+			font-weight: map-get($font-weights, "b");
+
+			&:before {
+				@extend %before-element;
+				left: 0;
+				bottom: 3%;
+				width: 47%;
+				height: 33%;
+			}
+		}
+
+		.header_text {
+			white-space: pre;
+			margin-left: -2vw;
+			font-size: 0.9vw;
+		}
+
+		.header-wrap {
+			div {
+				&:nth-last-child(1) {
+					height: 5vh;
+					display: flex;
+					width: 30%;
+					justify-content: space-between;
+					align-items: center;
+
+					button {
+						@include styleButton($btn-bg-color);
+						width: 30%;
+					}
+
+					a {
+						@include styleLinks(white);
+					}
+				}
+			}
+		}
+	}
+
+	main {
+		font-family: 'Source Sans Pro', sans-serif;
+
+		.section_text {
+			position: relative;
+			z-index: 9999;
+			color: $text-color1;
+			font-weight: map-get($font-weights, "m");
+			text-align: center;
+			font-size: 2.5vw;
+
+			&:before {
+				@extend %before-element;
+				left: 50.5%;
+				bottom: 3%;
+				width: 11.3%;
+				height: 100%;
+			}
+		}
+
+		.section_card_wrap {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+
+			.section_card {
+				width: 50vw;
+				background-color: $section-footer-bg-color;
+				padding: 2vw;
+				margin: 1vw 0;
+
+				img {
+					float: left;
+					height: 13vw;
+					width: 34%;
+					object-fit: cover;
+				} 
+
+				.section_card_right_container {
+					color: white;
+					margin: 0 auto;
+					width: 50%;
+					text-align: center;
+					display: flex;
+					flex-direction: column;
+					font-family: 'Hind', sans-serif;
+
+					.section_card_heading {
+						font-size: 1.6vw;
+						margin: 0;
+					}
+
+					.section_card_text {
+						font-size: 1vw;
+						text-align: justify;
+						color: #c0c3ce;
+						font-weight: map-get($font-weights, "l");
+					}
+
+					a {
+						@include styleLinks(#c0c3ce);
+					}
+				}
+			}
+		}
+
+		.section_banner {
+			position: relative;
+			border-radius: 10px;
+			padding: 1vw 4vw;
+			background: linear-gradient(45deg, $banner-gradient-color1 0%, $banner-gradient-color2 100%);
+			margin: 2vw auto -3vw auto;
+			z-index: 9999;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			height: 5vw;
+			width: 55vw;
+
+			.section_banner_heading {
+				position: relative;
+				z-index: 9999;
+				color: #2c2f3c;
+				font-weight: map-get($font-weights, "m");
+				margin: 0;
+				font-size: 2vw;
+
+				&:before {
+					@extend %before-element;
+					left: 30%;
+					bottom: 0;
+					width: 15%;
+					height: 120%;
+				}
+			}
+
+			.section_banner_text {
+				color: #c0c3ce;
+				font-size: 1vw;
+			}
+
+			button {
+				@include styleButton($btn-bg-color);
+				width: 15%;
+			}
+		}
+	}
+
+	footer {
+		background-color: $section-footer-bg-color;
+		height: 14vw;
+		font-family: 'Source Sans Pro', sans-serif;
+
+		.footer-wrap {
+			margin: 0 auto;
+			width: 80vw;
+			padding-top: 7vw;
+			z-index: -1;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			color: white;
+
+			.footer_text {
+				font-size: 0.8vw;
+				color: #c0c3ce;
+				width: 20%;
+			}
+
+			.footer-cr {
+				font-size: 0.8vw;
+				color: #c0c3ce;
+			}
+
+			.footer_logo {
+				color: #c0c3ce;
+				display: flex;
+				align-items: center;
+				font-weight: map-get($font-weights, "m");
+
+				img {
+					width: 3.5vw;
+					height: 3.5vw;
+					margin-right: 1vw;
+				}
+
+				p {
+					margin: 0;
+					text-align: center;
+					font-size: 2vw;
+				}
+
+				span {
+					font-size: 0.8vw;
+					display: block;
+				}
+			}
+		}	
+	}
+}
