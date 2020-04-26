@@ -1,12 +1,17 @@
 const _POW = 2, _MAXATTEMPTS = 3, _MINRANGE = 5, _MP = 25;
 let totalPrize = 0;
 let totalAttempts;
+let again = ['', false];
 
 function onStartGame() {
 	if(totalPrize === 0){
 		totalAttempts = 1;
-		const input = confirm('Do you want to play a game?');
-		input? onPlayGame() : alert('You did not become a billionaire, but can.');
+		const input = confirm(`Do you want to play a game ${again[0]}?`);
+		const mes = again[1]? () => { 
+										//do nothing 
+									} 
+							: () => alert('You did not become a billionaire, but can.');
+		input? onPlayGame() : mes();
 	} else {
 		totalAttempts++;
 		onPlayGame();
@@ -38,6 +43,8 @@ function onWinner(prize) {
 }
 
 function onEndGame() {
+	again[0] = 'again';
+	again[1] = true;
 	alert(`Thank you for your participation. Your prize is: ${totalPrize}$`);
 	totalPrize = 0;
 	onStartGame();
