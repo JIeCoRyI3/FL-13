@@ -1,0 +1,76 @@
+<!doctype html>
+
+<html lang="zxx">
+<head>
+    <meta charset="utf-8">
+
+    <title>Task 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="css/post.css">
+    <link rel="stylesheet" href="css/form.css">
+</head>
+<body>
+<div class="wrapper">
+    <header class="header">
+        <div class="container">
+            <div class="header__head">
+                <div class="header__logo">BlogWorld</div>
+                <nav class="header__navbar">
+                    <a href="index.html#home" class="header__link">Home</a>
+                    <a href="index.html#portfolio" class="header__link">Portfolio</a>
+                    <a href="blog.html" class="header__link header__link">Blog</a>
+                    <a href="index.html#posts" class="header__link">Pages</a>
+                    <a href="index.html#about" class="header__link">About</a>
+                    <a href="index.html#contact" class="header__link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <form class="form-server">
+            <h4 class="form-server__select-label">Select type of post:</h4>
+            <select aria-label="select" class="form-server__list">
+                <option>video</option>
+                <option>audio</option>
+                <option>text</option>
+                <option>image</option>
+            </select>
+            <h4 class="form-server__select-title">Title</h4>
+            <input class="form-server__title-in" aria-label="tit" id="title">
+            <h4 class="form-server__select-author">Author</h4>
+            <input class="form-server__author-in" aria-label="auth" id="author">
+            <h4 class="form-server__select-desc">Write a description</h4>
+            <h5 class="form-server__select-use1">Use '+*text*+' style for bold text, '-*text*-' style for deleted text</h5>
+            <h5 class="form-server__select-use2">Use '###Title' for new article with title</h5>
+            <textarea class="form-server__desc-in" aria-label="desc" id="description" placeholder="+*It will be bold text.*+-*It will be deleted text.*-
+###And it will be new title of new paragraph"></textarea>
+            <h4 class="form-server__select-quote">Write a quote</h4>
+            <textarea class="form-server__quote-in"  aria-label="qut" id="quote"></textarea>
+            <h4 class="form-server__select-img">Paste link to image</h4>
+            <input class="form-server__img-in"  aria-label="img" id="img"/>
+            <button type="button" class="header__explore-btn but-2" onclick="validate()">Submit</button>
+        </form>
+    </main>
+</div>
+
+<footer class="footer">
+    <div class="footer__wrapper row">
+        <div class="footer__col col-12">
+            <nav class="social-networks">
+                <a class="social-networks__item"><img alt="facebook" src="img/icon/a-icon-facebook.svg"></a>
+                <a class="social-networks__item"><img alt="instagram" src="img/icon/a-icon-instagram.svg"></a>
+                <a class="social-networks__item"><img alt="drib" src="img/icon/a-icon-dribbble.svg"></a>
+            </nav>
+            <div class="header__logo footer__logo">BlogWorld</div>
+            <div class="footer__copyright">©2019 All Rights Reserved.</div>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="js/form-validator.js"></script>
+</body>
+
+</html>

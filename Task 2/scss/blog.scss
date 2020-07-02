@@ -1,0 +1,256 @@
+@import "mixins";
+@import "variables";
+@import "bootstrap-settings";
+
+.header {
+  background-image: none;
+  height: fit-content;
+  margin-bottom: -9px;
+  padding-top: 29px;
+
+  &__head {
+    margin-top: -3px;
+  }
+
+  &__link {
+    letter-spacing: 0.1px;
+  }
+}
+
+.block {
+
+  &__see-more {
+    height: 45px;
+    width: 121px;
+    border-radius: 5px;
+    background-color: #4D4C49;
+    color: #FFFFFF;
+    font-family: $font-fam;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: 25px;
+    margin: 10px 0 80px 50%;
+    border: none;
+    transform: translateX(-50%);
+  }
+
+  &__search-container {
+    position: relative;
+
+    &:after {
+      @include pseudo;
+      top: 43px;
+      right: 5px;
+      width: 40px;
+      height: 40px;
+      background-image: url("../img/icon/a-icon-search-1.svg");
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+
+  &__search {
+    box-sizing: border-box;
+    height: 45px;
+    width: 320px;
+    border: 1px solid $font-color-dark;
+    border-radius: 5px;
+    color: $font-color-dark;
+    font-family: $font-fam;
+    font-size: 15px;
+    letter-spacing: $letter-space;
+    line-height: 25px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    margin-left: 72.5%;
+    padding: 10px;
+  }
+}
+
+.blog-post {
+  height: 379px;
+  position: relative;
+  margin-bottom: 50px;
+
+  * {
+    font-family: $font-fam;
+    color: $font-color-dark;
+    letter-spacing: $letter-space;
+  }
+
+  &__corner {
+    position: absolute;
+    right: 20px;
+    top: 0;
+    width: 81px;
+    height: 73px;
+    background-color: transparent;
+    border-radius: 5px;
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &--texted {
+    .blog-post__corner {
+      background-image: url("../img/icon/a-icon-text.svg");
+    }
+  }
+
+  &--texted .blog-post__right-container {
+    padding: 26px 0 0 46px;
+  }
+
+  &--audioted {
+    .blog-post__corner {
+      background-image: url("../img/icon/a-icon-melody.svg");
+    }
+  }
+
+  &--videoted {
+    .blog-post__corner {
+      background-image: url("../img/icon/a-icon-playmini.svg");
+    }
+
+    .blog-post__img:after {
+      @include pseudo;
+      width: 72px;
+      height: 72px;
+      background-image: url("../img/icon/a-icon-play.svg");
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &--imgoted {
+    .blog-post__corner {
+      background-image: url("../img/icon/a-icon-picture.svg");
+    }
+  }
+
+  &--texted .blog-post__text {
+    width: 1033px;
+  }
+
+  &__audio {
+    height: 35px;
+    width: 214px;
+    margin-top: 20px;
+    margin-bottom: -17px;
+  }
+
+  &:hover:after,
+  &--hovered:after {
+    box-shadow: 0px 17px 31px -4px rgba(0,0,0,0.3);
+  }
+
+  &:before {
+    @include pseudo;
+    width: calc(100% - 40px);
+    height: 100%;
+    top: 0;
+    left: 20px;
+    background-color: #FCF6F6;
+    z-index: -1;
+    border-radius: 5px;
+  }
+
+  &:after {
+    transition: 0.4s;
+    @include pseudo;
+    width: 80%;
+    height: 100%;
+    top: 0;
+    left: 10%;
+    z-index: -3;
+    border-radius: 5px;
+  }
+
+  &__img {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__button {
+    box-sizing: border-box;
+    height: 45px;
+    width: 121px;
+    border: 1px solid #4D4949;
+    border-radius: 5px;
+    font-size: 15px;
+    line-height: 25px;
+    background-color: transparent;
+    margin-top: 15px;
+    margin-left: 1px;
+  }
+
+  &__avatar {
+    width: 54px;
+    height: 54px;
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    height: 54px;
+    padding: 1px 0 0 15px;
+  }
+
+  &__name {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 28px;
+    margin-bottom: -1px;
+  }
+
+  &__stars {
+    margin-left: 10px;
+  }
+
+  &__right-container {
+    padding: 26px 0 0 19px;
+  }
+
+  &__article {
+    margin-left: 1px;
+    margin-top: 38px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 26px;
+  }
+
+  &__text {
+    margin-left: 1px;
+    margin-top: 15px;
+    width: 460px;
+    font-size: 17px;
+    line-height: 26px;
+  }
+}
+
+.bcard__date,
+.bcard__reads{
+  letter-spacing: .3px;
+}
+
+.but-1:hover,
+.but-1--hovered,
+.but-2:hover,
+.but-2--hovered {
+  cursor: pointer;
+  color: #FFFFFF;
+  background-color: #393737;
+}
