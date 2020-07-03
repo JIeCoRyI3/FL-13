@@ -5,7 +5,7 @@ let pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
     '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
     '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
 
-let id = Math.random().toString(36).substring(7);
+let id = Math.round(Math.random() * Math.random() * 2000);
 
 function validate() {
     const selectText = document.querySelector('.form-server__list').value;

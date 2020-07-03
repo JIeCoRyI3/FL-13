@@ -4,8 +4,10 @@ window.onload = function() {
 
 
 function renderPost() {
+    let id = new URL(location.href).hash;
+    id = id.substr(1, id.length);
     const apiBase = 'http://localhost:3000';
-    fetch(`${apiBase}/api/list`, {
+    fetch(`${apiBase}/api/list/${id}`, {
         method: 'GET'
     })
         .then(x => x.json())
@@ -13,8 +15,7 @@ function renderPost() {
             const monthNames = ['jan', 'feb', 'mar', 'apr', 'mar', 'jun',
                 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'
             ];
-
-            const dataObj = data.find((obj) => '#' + obj.id === new URL(location.href).hash);
+            const dataObj = data;
             let dataArr = dataObj.descText;
             const type = dataObj.selectText;
             let quote = dataObj.quoteText;
