@@ -1,14 +1,14 @@
 class Post {
     postType = 'texted';
     constructor ({ postTitle, postText, postAuthor }) {
-        this.postTitle = postTitle;
+        this.postTitle = postTitle; //Абстракция
         this.postText = postText;
         this.postDate = new Date();
         this.postAuthor = postAuthor;
         Post.instances.push(this);
     }
 
-    createBaseStructure() {
+    createBaseStructure() { //Полиморфный метод
         return `<div class="blog-post__corner"></div>
     <div class="blog-post__right-container">
         <div class="blog-post__head">
@@ -52,7 +52,7 @@ class Post {
             document.querySelector('.block__wrapper').children[2]);
     }
 
-    getDate = () => {
+    getDate = () => { //Полиморфный метод
         const monthNames = ['jan', 'feb', 'mar', 'apr', 'mar', 'jun',
             'jul', 'aug', 'sep', 'oct', 'nov', 'dec'
         ];
@@ -63,7 +63,7 @@ class Post {
 
 Post.instances = [];
 
-class VideoPost extends Post {
+class VideoPost extends Post { //Наследование
     postType = 'videoted';
     constructor(postData) {
         super(postData);
@@ -71,7 +71,7 @@ class VideoPost extends Post {
     }
 
     createPost() {
-        let newPost = super.createPost();
+        let newPost = super.createPost(); //Инкапсуляция и Полиморфизм
         let image = document.createElement('div');
         image.classList.add('blog-post__img', 'col-6');
         image.innerHTML = `<img alt="img" src="${this.imgLink}">`;
@@ -155,3 +155,5 @@ function renderAllPosts(posts) {
 }
 
 renderAllPosts(Post.instances);
+// если нужно рендерить один или определенные посты
+// то достаточно просто у нужных экземпляров класса Post вызвать render()
