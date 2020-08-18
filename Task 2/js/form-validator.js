@@ -17,7 +17,7 @@ function validate() {
 
     if(titleText.length <= 2 || titleText.length >= 20) {
         alert('Incorrect title length');
-    } else if(titleText[0] !== titleText[0].toUpperCase() || !isNaN(+titleText[0])) {
+    } else if(!/[A-Z]/.test(titleText[0])) {
         alert('Title have to start with uppercase letter!');
     } else if (!/^[a-zA-Z?!. ,:-]+$/.test(titleText)) {
         alert('You can use only letters and !, ., ,, -, ?, :');
