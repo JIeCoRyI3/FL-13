@@ -1,2 +1,2 @@
-server/RD-master/node_modules;
-.idea;
+server/RD-master/node_modules/
+.idea/
