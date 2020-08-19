@@ -4,7 +4,7 @@ let pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
     '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
     '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
     '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-
+document.querySelector('.form-server__date-in').value = new Date();
 let id = Math.round(Math.random() * Math.random() * 2000);
 
 function validate() {

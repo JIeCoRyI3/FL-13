@@ -37,22 +37,19 @@ function renderPosts() {
                 let desc;
                 const lengthForAudio = 100, lengthForText = 380, lengthForAll = 200;
                 if(type === 'audioted') {
+                    desc = post.descText.substr(0, lengthForAudio);
                     if(post.descText.length > lengthForAudio) {
-                        desc = post.descText.substr(0, lengthForAudio) + ' …';
-                    } else {
-                        desc = post.descText.substr(0, lengthForAudio);
+                        desc += ' …';
                     }
                 } else if(type === 'texted'){
+                    desc = post.descText.substr(0, lengthForText);
                     if(post.descText.length > lengthForText) {
-                        desc = post.descText.substr(0, lengthForText) + ' …';
-                    } else {
-                        desc = post.descText.substr(0, lengthForText);
+                        desc += ' …';
                     }
                 } else {
+                    desc = post.descText.substr(0, lengthForAll);
                     if(post.descText.length > lengthForAll) {
-                        desc = post.descText.substr(0, lengthForAll) + ' …';
-                    } else {
-                        desc = post.descText.substr(0, lengthForAll);
+                        desc += ' …';
                     }
                 }
                 desc = undecorText(desc);
@@ -135,7 +132,7 @@ function undecorText(text) {
         text = text.replace('*-', '');
     }
     while (~text.indexOf('###')) {
-        text = text.replace('*-', '');
+        text = text.replace('###', '');
     }
     return text;
 }

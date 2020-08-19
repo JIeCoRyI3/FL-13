@@ -35,6 +35,8 @@
     width: 200px;
     height: 50px;
     font-size: 100%; }
+  .form-server #date {
+    background-color: #fde0ff; }
 
 .but-1:hover,
 .but-1--hovered,
