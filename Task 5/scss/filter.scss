@@ -1,0 +1,88 @@
+@import "mixins";
+@import "variables";
+@import "bootstrap-settings";
+
+.main {
+  display: flex;
+  padding-top: 30px;
+  padding-left: 120px;
+  position: relative;
+}
+
+.left-side {
+  width: 75%;
+  .horizontal-bar {
+    display: flex;
+    &__author {
+      font-size: 14pt;
+      transition: 0.5s;
+      margin-right: 25px;
+      cursor: pointer;
+      &:hover {
+        color: darkseagreen;
+      }
+    }
+
+    .active-article {
+      color: green;
+      nav {
+        position: absolute;
+        left: 120px;
+        top: 60px;
+        color: black;
+        display: flex;
+      }
+    }
+  }
+
+  .side__article {
+    font-size: initial;
+    margin-right: 25px;
+    cursor: pointer;
+  }
+
+  .post {
+    padding-top: 50px;
+    &__title, &__text {
+      width: 80%;
+      background-color: cornsilk;
+    }
+  }
+}
+
+.right-side {
+  width: 25%;
+  &__author {
+    transition: 0.5s;
+    margin-bottom: 25px;
+    cursor: pointer;
+    &:hover {
+      color: darkseagreen;
+    }
+  }
+
+  .active-article {
+    color: green;
+    font-size: 14pt;
+    nav {
+      font-size: initial;
+      color: black;
+      display: block;
+    }
+  }
+
+  .side__article {
+    margin-left: 25px;
+    margin-top: 7px;
+  }
+}
+
+.non-active-article {
+  color: black;
+  nav {
+    display: none;
+  }
+}
+
+
+

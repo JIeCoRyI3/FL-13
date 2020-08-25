@@ -1,0 +1,73 @@
+.container {
+  max-width: 1200px !important;
+  padding-right: 20px !important;
+  padding-left: 20px !important; }
+
+.row {
+  margin-right: -20px !important;
+  margin-left: -20px !important; }
+
+[class*="col-"] {
+  padding-right: 20px !important;
+  padding-left: 20px !important; }
+
+.main {
+  display: flex;
+  padding-top: 30px;
+  padding-left: 120px;
+  position: relative; }
+
+.left-side {
+  width: 75%; }
+  .left-side .horizontal-bar {
+    display: flex; }
+    .left-side .horizontal-bar__author {
+      font-size: 14pt;
+      transition: 0.5s;
+      margin-right: 25px;
+      cursor: pointer; }
+      .left-side .horizontal-bar__author:hover {
+        color: darkseagreen; }
+    .left-side .horizontal-bar .active-article {
+      color: green; }
+      .left-side .horizontal-bar .active-article nav {
+        position: absolute;
+        left: 120px;
+        top: 60px;
+        color: black;
+        display: flex; }
+  .left-side .side__article {
+    font-size: initial;
+    margin-right: 25px;
+    cursor: pointer; }
+  .left-side .post {
+    padding-top: 50px; }
+    .left-side .post__title, .left-side .post__text {
+      width: 80%;
+      background-color: cornsilk; }
+
+.right-side {
+  width: 25%; }
+  .right-side__author {
+    transition: 0.5s;
+    margin-bottom: 25px;
+    cursor: pointer; }
+    .right-side__author:hover {
+      color: darkseagreen; }
+  .right-side .active-article {
+    color: green;
+    font-size: 14pt; }
+    .right-side .active-article nav {
+      font-size: initial;
+      color: black;
+      display: block; }
+  .right-side .side__article {
+    margin-left: 25px;
+    margin-top: 7px; }
+
+.non-active-article {
+  color: black; }
+  .non-active-article nav {
+    display: none; }
+
+/*# sourceMappingURL=filter.css.map */
