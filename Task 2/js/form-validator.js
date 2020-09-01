@@ -1,3 +1,5 @@
+import ApiClient from "./apiClient.js";
+
 let pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
     '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
@@ -5,9 +7,12 @@ let pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
     '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
     '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
 document.querySelector('.form-server__date-in').value = new Date();
-let id = Math.round(Math.random() * Math.random() * 2000);
+const id = Math.round(Math.random() * Math.random() * 2000);
+
+document.querySelector('.header__explore-btn').onclick = validate;
 
 function validate() {
+    const apiClient = new ApiClient();
     const selectText = document.querySelector('.form-server__list').value;
     const titleText = document.querySelector('.form-server__title-in').value;
     const authorText = document.querySelector('.form-server__author-in').value;
@@ -15,6 +20,17 @@ function validate() {
     const quoteText = document.querySelector('.form-server__quote-in').value;
     const linkText = document.querySelector('.form-server__img-in').value;
 
+    const data = createValidData(titleText, authorText, descText, linkText, selectText, quoteText);
+
+    if(data) {
+        apiClient.createPost(data)
+        .then(() => {
+            location.href = `./post.html#${id}`;
+        })
+    }
+}
+
+function createValidData(titleText, authorText, descText, linkText, selectText, quoteText) {
     if(titleText.length <= 2 || titleText.length >= 20) {
         alert('Incorrect title length');
     } else if(!/[A-Z]/.test(titleText[0])) {
@@ -26,7 +42,7 @@ function validate() {
     } else if (!pattern.test(linkText)) {
         alert('Wrong URL');
     } else {
-        connect({
+        return {
             id,
             selectText,
             titleText,
@@ -35,17 +51,6 @@ function validate() {
             quoteText,
             linkText,
             date: new Date()
-        });
+        };
     }
-}
-
-function connect(data) {
-    const apiBase = 'http://localhost:3000';
-    fetch(`${apiBase}/api/create-article`, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: { 'Content-Type': 'application/json' }
-    }).then(() => {
-        location.href = `./post.html#${id}`;
-    });
 }

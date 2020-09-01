@@ -1,100 +1,20 @@
+import ApiClient from "./apiClient.js";
 window.onload = function() {
     renderPosts();
 };
 
 function renderPosts() {
-    const apiBase = 'http://localhost:3000';
-    fetch(`${apiBase}/api/list`, {
-        method: 'GET'
-    })
-        .then(x => x.json())
+    const apiClient = new ApiClient();
+    apiClient.getListOfPosts()
         .then(data => {
-            let validArray = data.filter((post) => {
-                if(post.selectText) {
-                    return post;
-                }
-                return false;
-            });
-            validArray.map((post) => {
-                let type;
-                switch (post.selectText) {
-                    case 'video':
-                        type = 'videoted';
-                        break;
-                    case 'audio':
-                        type = 'audioted';
-                        break;
-                    case 'text':
-                        type = 'texted';
-                        break;
-                    case 'image':
-                        type = 'imgoted';
-                        break;
-                    default:
-                        type = 'texted';
-                        break;
-                }
-                let desc;
-                const lengthForAudio = 100, lengthForText = 380, lengthForAll = 200;
-                if(type === 'audioted') {
-                    desc = post.descText.substr(0, lengthForAudio);
-                    if(post.descText.length > lengthForAudio) {
-                        desc += ' …';
-                    }
-                } else if(type === 'texted'){
-                    desc = post.descText.substr(0, lengthForText);
-                    if(post.descText.length > lengthForText) {
-                        desc += ' …';
-                    }
-                } else {
-                    desc = post.descText.substr(0, lengthForAll);
-                    if(post.descText.length > lengthForAll) {
-                        desc += ' …';
-                    }
-                }
-                desc = undecorText(desc);
+            const validArray = setValidArray(data);
 
-                const monthNames = ['jan', 'feb', 'mar', 'apr', 'mar', 'jun',
-                    'jul', 'aug', 'sep', 'oct', 'nov', 'dec'
-                ];
-                let date = new Date(post.date);
-                let day = date.getDate() < 10? '0' + date.getDate() : date.getDate();
-
-                document.querySelector('.block__wrapper').innerHTML += `
-                    <div class='block__blog-post blog-post blog-post--${type} row'>
-                        <div class='blog-post__corner'></div>
-                        ${image(type, post)}
-                        <div class='blog-post__right-container'>
-                            <div class='blog-post__head'>
-                                <img alt='img' class='blog-post__avatar' src='img/Neil.png'>
-                                <div class='blog-post__title'>
-                                    <h2 class='blog-post__name'>${post.authorText}</h2>
-                                    <div class='bcard__flex-comments'>
-                        <div class='bcard__date'>${day} ${monthNames[date.getMonth()]}, ${date.getFullYear()}</div>
-                                        <div class='bcard__splitter'>•</div>
-                                        <div class='bcard__reads'>7 min read</div>
-                                        <div class='bcard__splitter'>•</div>
-                        <div class='bcard__comments'><img alt='comment' src='img/icon/a-icon-comment.svg'>19</div>
-                                        <div class='blog-post__stars'>
-                                            <img alt='img' src='img/Star.svg'>
-                                            <img alt='img' src='img/Star.svg'>
-                                            <img alt='img' src='img/Group.svg'>
-                                            <img alt='img' src='img/Star-1.svg'>
-                                            <img alt='img' src='img/Star-1.svg'>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <h2 class='blog-post__article'>${post.titleText}</h2>
-                            ${audio(type)}
-                            <p class='blog-post__text'>${desc}</p>
-                            <button class='blog-post__button but-1' 
-                            onclick="location.href='./post.html#${post.id}'">Read more</button>
-                        </div>
-                    </div>
-                `;
-                return true;
+            validArray.forEach((post) => {
+                const { selectText, descText } = post;
+                const type = setPostType(selectText);
+                const description = setDescription(type, descText);
+                const undecorDescription = undecorText(description);
+                renderContent(post, undecorDescription, type);
             });
         });
 }
@@ -135,4 +55,101 @@ function undecorText(text) {
         text = text.replace('###', '');
     }
     return text;
+}
+
+function setValidArray(data) {
+    return data.filter((post) => {
+        if(post.selectText) {
+            return post;
+        }
+        return false;
+    });
+}
+
+function setPostType(selectText) {
+    let type;
+    switch (selectText) {
+        case 'video':
+            type = 'videoted';
+            break;
+        case 'audio':
+            type = 'audioted';
+            break;
+        case 'text':
+            type = 'texted';
+            break;
+        case 'image':
+            type = 'imgoted';
+            break;
+        default:
+            type = 'texted';
+            break;
+    }
+    return type;
+}
+
+function setDescription(type, descriptionText) {
+    let desc;
+    const lengthForAudio = 100, lengthForText = 380, lengthForAll = 200;
+    if(type === 'audioted') {
+        desc = descriptionText.substr(0, lengthForAudio);
+        if(descriptionText.length > lengthForAudio) {
+            desc += ' …';
+        }
+    } else if(type === 'texted'){
+        desc = descriptionText.substr(0, lengthForText);
+        if(descriptionText.length > lengthForText) {
+            desc += ' …';
+        }
+    } else {
+        desc = descriptionText.substr(0, lengthForAll);
+        if(descriptionText.length > lengthForAll) {
+            desc += ' …';
+        }
+    }
+    return desc;
+}
+
+function renderContent(post, undecorDescription, type) {
+    const { date, authorText, titleText, id } = post;
+    const monthNames = ['jan', 'feb', 'mar', 'apr', 'mar', 'jun',
+        'jul', 'aug', 'sep', 'oct', 'nov', 'dec'
+    ];
+    const postDate = new Date(date);
+    const day = postDate.getDate() < 10? '0' + postDate.getDate() : postDate.getDate();
+
+    document.querySelector('.block__wrapper').innerHTML += `
+                    <div class='block__blog-post blog-post blog-post--${type} row'>
+                        <div class='blog-post__corner'></div>
+                        ${image(type, post)}
+                        <div class='blog-post__right-container'>
+                            <div class='blog-post__head'>
+                                <img alt='img' class='blog-post__avatar' src='img/Neil.png'>
+                                <div class='blog-post__title'>
+                                    <h2 class='blog-post__name'>${authorText}</h2>
+                                    <div class='bcard__flex-comments'>
+                        <div class='bcard__date'>${day} ${monthNames[postDate.getMonth()]}, ${postDate.getFullYear()}</div>
+                                        <div class='bcard__splitter'>•</div>
+                                        <div class='bcard__reads'>7 min read</div>
+                                        <div class='bcard__splitter'>•</div>
+                        <div class='bcard__comments'><img alt='comment' src='img/icon/a-icon-comment.svg'>19</div>
+                                        <div class='blog-post__stars'>
+                                            <img alt='img' src='img/Star.svg'>
+                                            <img alt='img' src='img/Star.svg'>
+                                            <img alt='img' src='img/Group.svg'>
+                                            <img alt='img' src='img/Star-1.svg'>
+                                            <img alt='img' src='img/Star-1.svg'>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <h2 class='blog-post__article'>${titleText}</h2>
+                            ${audio(type)}
+                            <p class='blog-post__text'>${undecorDescription}</p>
+                            <button class='blog-post__button but-1' 
+                            onclick="location.href='./post.html#${id}'">Read more</button>
+                        </div>
+                    </div>
+                `;
 }
