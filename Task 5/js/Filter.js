@@ -1,4 +1,4 @@
-const data = [ //Data array
+const data = [
     {
         name: 'Roman Jion',
         articles: [
@@ -72,7 +72,7 @@ const data = [ //Data array
 const bar1 = document.querySelector('.horizontal-bar');
 const bar2 = document.querySelector('.right-side');
 
-data.forEach((author) => { //Rendering author's elements from data
+data.forEach((author) => {
     let postNames = '';
     author.articles.forEach(article => {
         postNames += `<div class="side__article">${article.title}</div>`;
