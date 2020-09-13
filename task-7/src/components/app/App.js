@@ -7,8 +7,8 @@ class App extends React.Component {
   state = {
     movies: [],
     selectedMovie: 0,
-    byRating: false,
-    byLikes: false,
+    byRating: null,
+    byLikes: null,
     filter: ""
   };
 
@@ -62,7 +62,7 @@ class App extends React.Component {
 
   filterByRating = () => {
     let newArray = this.state.movies;
-    if (this.state.byRating) {
+    if (!this.state.byRating) {
       newArray.sort((a, b) => {
         return a.stars - b.stars;
       });
@@ -80,7 +80,7 @@ class App extends React.Component {
 
   filterByLikes = () => {
     let newArray = this.state.movies;
-    if (this.state.byLikes) {
+    if (!this.state.byLikes) {
       newArray.sort((a, b) => {
         return a.likes - b.likes;
       });
@@ -129,7 +129,7 @@ class App extends React.Component {
                    </div>
                    <div className={styles.image} style={{backgroundImage: `url(${movie.posterUrl})`}} />
                  </div>
-                 <StarMark rate={this.rate} rating={movie.stars} unique={movie.id-1} key={index+"starID"} canChange={true}/>
+                 <StarMark br={this.state.byRating} bl={this.state.byLikes} rate={this.rate} rating={movie.stars} unique={movie.id-1} key={index+"starID"}/>
                </div>
                );
          })}

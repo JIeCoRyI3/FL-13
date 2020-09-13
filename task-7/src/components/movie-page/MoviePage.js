@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './MoviePage.css';
+import styles from './MoviePage.module.css';
 
 class MoviePage extends React.Component {
 
@@ -29,7 +29,7 @@ class MoviePage extends React.Component {
       }
 
     return (
-        <div>
+        <div className={styles.info}>
             <div>
                 <div>Likes: {this.state.movie.likes}</div>
                 <div>Stars: {this.state.movie.stars}</div>

@@ -1,0 +1,9 @@
+h5 {
+    width: 500px;
+}
+
+.info {
+    position: fixed;
+    top: 20px;
+    right: 10%;
+}

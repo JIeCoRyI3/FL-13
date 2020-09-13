@@ -4,16 +4,19 @@ import styles from './StarMark.module.css';
 class StarMark extends React.Component {
 
     canRate = true;
+    id = null;
 
     componentDidMount() {
-        if (this.props.canChange) this.addLogic();
+        this.addLogic();
+        this.id = this.props.unique;
         this.rate(this.props.rating);
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.unique !== prevProps.unique) {
             this.canRate = false;
-            this.rate(this.props.rating);
+            this.id = prevProps.unique;
+            this.rate(this.props.rating, prevProps.unique);
             this.canRate = true;
         }
     }
@@ -34,7 +37,7 @@ class StarMark extends React.Component {
             }
         }
 
-        if(this.props.rate && this.canRate) this.props.rate(rating, this.props.unique);
+        if(this.props.rate && this.canRate) this.props.rate(rating, this.id);
     };
 
     addLogic = () => {
@@ -52,6 +55,7 @@ class StarMark extends React.Component {
                         stars[i].classList.add('far');}
                 }
                 const rating = uniqueStars.querySelectorAll('.fas').length;
+                console.log(rating, this.props.unique);
                 this.rate(rating);
             })
         })
