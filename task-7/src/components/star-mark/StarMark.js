@@ -3,25 +3,38 @@ import styles from './StarMark.module.css';
 
 class StarMark extends React.Component {
 
+    canRate = true;
+
     componentDidMount() {
         if (this.props.canChange) this.addLogic();
         this.rate(this.props.rating);
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.rating !== prevProps.rating) {
+        if (this.props.unique !== prevProps.unique) {
+            this.canRate = false;
             this.rate(this.props.rating);
+            this.canRate = true;
         }
     }
 
     rate = (rating) => {
         const uniqueStars = document.querySelector(`.k${this.props.unique}`);
         const stars = uniqueStars.querySelectorAll('.fa-star');
-        for(let i = 0; i < rating; i++) {
-            stars[i].classList.remove('far');
-            stars[i].classList.add('fas');
+        const currentRating = uniqueStars.querySelectorAll('.fas').length;
+        if(currentRating < rating) {
+            for(let i = 0; i < rating; i++) {
+                stars[i].classList.remove('far');
+                stars[i].classList.add('fas');
+            }
+        } else {
+            for(let i = rating; i < 5; i++) {
+                stars[i].classList.remove('fas');
+                stars[i].classList.add('far');
+            }
         }
-        if(this.props.rate) this.props.rate(rating, this.props.unique);
+
+        if(this.props.rate && this.canRate) this.props.rate(rating, this.props.unique);
     };
 
     addLogic = () => {

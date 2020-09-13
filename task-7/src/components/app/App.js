@@ -129,7 +129,7 @@ class App extends React.Component {
                    </div>
                    <div className={styles.image} style={{backgroundImage: `url(${movie.posterUrl})`}} />
                  </div>
-                 <StarMark rate={this.rate} rating={movie.stars} unique={index} key={index+"starID"} canChange={true}/>
+                 <StarMark rate={this.rate} rating={movie.stars} unique={movie.id-1} key={index+"starID"} canChange={true}/>
                </div>
                );
          })}
