@@ -9,6 +9,7 @@ class App extends React.Component {
     selectedMovie: 0,
     byRating: false,
     byLikes: false,
+    filter: ""
   };
 
   componentDidMount() {
@@ -96,17 +97,18 @@ class App extends React.Component {
   };
 
   search = () => {
-    let newArray = this.state.movies;
-    newArray = newArray.filter((movie) => {
-      return movie.title.indexOf(document.getElementById('search').textContent);
-    });
-
     this.setState({
-      filteredArray: newArray,
-    })
+      filter: document.getElementById('search').value
+    });
   };
 
   render() {
+    const { filter } = this.state;
+    const lowercasedFilter = filter.toLowerCase();
+    const filteredData = this.state.movies.filter(movie => {
+      return movie.title.toLowerCase().includes(lowercasedFilter);
+    });
+
     return (
         <div className={styles.container}>
           <div className={styles.filterBar}>
@@ -115,7 +117,7 @@ class App extends React.Component {
             <input id="search" onChange={this.search}/>
           </div>
           <div className={styles.grid}>
-         {this.state.movies.map((movie, index) => {
+         {filteredData.map((movie, index) => {
            return (
                <div key={index+'cardId'} className={styles.card}>
                  <div className={styles.movieShortInfo}>
