@@ -1,0 +1,48 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    margin: 3px;
+}
+
+.movieShortInfo {
+    width: 300px;
+    margin: 30px;
+}
+
+.image {
+    width: 300px;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.grid {
+    margin-left: 30px;
+    display: flex;
+    width: 50%;
+    flex-wrap: wrap;
+}
+
+.title {
+    font-size: 20pt;
+}
+
+.container {
+    display: flex;
+    padding: 15px;
+}
+
+.likeBar {
+    display: flex;
+}
+
+.likeBar *{
+    margin: 5px;
+}
+
+* {
+    user-select: none;
+}
