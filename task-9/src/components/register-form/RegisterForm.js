@@ -35,7 +35,7 @@ class RegisterForm extends React.Component {
             <input id='password'/>
             <label htmlFor='confirm-password'>Confirm password:</label>
             <input id='confirm-password'/>
-            <button id='confirm-btn' onClick={this.register}>Register</button>
+            <button className='btn btn-primary' id='confirm-btn' onClick={this.register}>Register</button>
         </div>
     )
   }

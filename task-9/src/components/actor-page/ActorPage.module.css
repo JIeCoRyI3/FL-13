@@ -8,14 +8,6 @@
     margin-bottom: 20px;
 }
 
-h5 {
-    text-align: justify;
-}
-
-.btns * {
-    margin: 20px;
-}
-
-.actors * {
-    margin: 10px;
+.actor {
+    width: 50%;
 }

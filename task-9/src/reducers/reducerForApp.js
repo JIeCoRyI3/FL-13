@@ -1,8 +1,22 @@
-import { LOAD_DATA, SELECT_MOVIE, FILTER_BY_SEARCH, LIKE, DISLIKE, FILTER_BY_RATING, FILTER_BY_LIKES, RATE } from "../actions/actionsForApp";
+import {
+    LOAD_DATA,
+    SELECT_MOVIE,
+    FILTER_BY_SEARCH,
+    LIKE,
+    DISLIKE,
+    FILTER_BY_RATING,
+    FILTER_BY_LIKES,
+    RATE,
+    DELETE_MOVIE,
+    EDIT_MOVIE
+}
+    from "../actions/actionsForApp";
 import {List} from "immutable";
+
 const initialState = {
     movies: [],
-    selectedMovie: null,
+    actors: [],
+    selectedMovie: 'non-movie',
     byRating: null,
     byLikes: null,
     filter: ""
@@ -74,6 +88,20 @@ function reducer(state = initialState, action) {
                 ...state,
                 movies: state.movies.map((movie, index) =>
                     index === action.payload.index ? {...movie, stars: action.payload.stars}
+                        : movie),
+            };
+        case DELETE_MOVIE:
+            return {
+                ...state,
+                movies: state.movies.filter((movie) =>
+                    movie.id === action.payload.index ? null
+                        : movie),
+            };
+        case EDIT_MOVIE:
+            return {
+                ...state,
+                movies: state.movies.map((movie) =>
+                    movie.id === action.payload.index ? {...movie, ...action.payload.data}
                         : movie),
             };
         default:

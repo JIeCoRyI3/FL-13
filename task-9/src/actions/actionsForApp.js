@@ -6,3 +6,5 @@ export const DISLIKE = 'DISLIKE';
 export const FILTER_BY_RATING = 'FILTER_BY_RATING';
 export const FILTER_BY_LIKES = 'FILTER_BY_LIKES';
 export const RATE = 'RATE';
+export const DELETE_MOVIE = 'DELETE_MOVIE';
+export const EDIT_MOVIE = 'EDIT_MOVIE';

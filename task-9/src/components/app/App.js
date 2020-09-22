@@ -7,12 +7,15 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 import LoginForm from "../login-form";
 import RegisterForm from "../register-form";
 import PrivateRoute from "../../helpers/private-route";
 import Homepage from "../homepage/Homepage";
+import ActorPage from "../actor-page";
+import EditPage from "../edit-movie/EditPage";
 
 class App extends React.Component {
 
@@ -23,7 +26,7 @@ class App extends React.Component {
     }
   }
 
-  api = 'https://gist.githubusercontent.com/Yuriy1988/d2d2f23467f12f43d0128718bdd7c9ab/raw/75f10839adcb3605e2af7563b8351bb277997b26/moviesForStudents.json';
+  api = 'https://gist.githubusercontent.com/JIeCoRyI3/d000d1bed0632ebae4707fd3b5e0e2ad/raw/88ac5f11885582310457df09270ad8570123ffc3/movies-with-actors.json';
 
   fetchData = () => {
     fetch(this.api).then((res) => {
@@ -44,20 +47,21 @@ class App extends React.Component {
         <Router>
           <header>
             <nav className={styles.navBar}>
-              {isLogin ? <Link to='/homepage'>Homepage</Link> : null}
+              {isLogin ? <Link className='btn btn-primary' to='/homepage'>Homepage</Link> : null}
               {isLogin ? null : <Link to='/login'>Login</Link>}
               {isLogin ? null : <Link to='/register'>Register</Link>}
-              {isLogin ? <button onClick={this.logOut}>Log out</button> : null}
+              {isLogin ? <button className='btn btn-primary' onClick={this.logOut}>Log out</button> : null}
             </nav>
           </header>
           <Switch>
             <PrivateRoute exact path="/homepage" component={Homepage}/>
             <PrivateRoute exact path="/movie" component={MoviePage}/>
-            <Route path="/login">
-              <LoginForm/>
-            </Route>
-            <Route path="/register">
-              <RegisterForm/>
+            <PrivateRoute exact path="/actor:id" component={ActorPage}/>
+            <PrivateRoute exact path="/edit-movie" component={EditPage}/>
+            <Route exact path="/login" component={LoginForm}/>
+            <Route exact path="/register" component={RegisterForm}/>
+            <Route path='/'>
+              <Redirect to='/homepage'/>
             </Route>
           </Switch>
         </Router>

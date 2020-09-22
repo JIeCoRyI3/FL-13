@@ -29,7 +29,7 @@ class LoginForm extends React.Component {
             <input id='login'/>
             <label htmlFor='login'>Password:</label>
             <input id='password'/>
-            <button id='confirm-btn' onClick={this.login}>Login</button>
+            <button className='btn btn-primary' id='confirm-btn' onClick={this.login}>Login</button>
         </div>
     )
   }

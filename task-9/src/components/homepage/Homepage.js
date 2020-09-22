@@ -39,7 +39,7 @@ class Homepage extends React.Component {
           <div className={styles.filterBar}>
             <h3 onClick={this.filterByRating}>filter by rating</h3>
             <h3 onClick={this.filterByLikes}>filter by likes</h3>
-            <input id="search" onChange={this.search}/>
+            <input id="search" placeholder='Search...' onChange={this.search}/>
           </div>
           <div className={styles.grid}>
             {this.props.movies.map((movie, index) => {

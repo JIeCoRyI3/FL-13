@@ -1,6 +1,8 @@
 .info {
     margin: 0 auto;
     width: 800px;
+    display: flex;
+    flex-direction: column;
 }
 
 .info *{
@@ -8,14 +10,6 @@
     margin-bottom: 20px;
 }
 
-h5 {
-    text-align: justify;
-}
-
-.btns * {
-    margin: 20px;
-}
-
-.actors * {
-    margin: 10px;
+textarea {
+    height: 300px;
 }
