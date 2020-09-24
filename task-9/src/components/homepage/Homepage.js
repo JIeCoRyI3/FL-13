@@ -54,7 +54,7 @@ class Homepage extends React.Component {
                       </div>
                       <div className={styles.image} style={{backgroundImage: `url(${movie.posterUrl})`}} />
                     </div>
-                    <StarMark unique={index}  key={index+"starID"}/>
+                    <StarMark index={movie.id} stars={movie.stars} key={index}/>
                   </div>
               );
             })}

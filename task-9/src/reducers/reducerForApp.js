@@ -9,8 +9,7 @@ import {
     RATE,
     DELETE_MOVIE,
     EDIT_MOVIE
-}
-    from "../actions/actionsForApp";
+} from "../actions/actionsForApp";
 import {List} from "immutable";
 
 const initialState = {
@@ -21,6 +20,7 @@ const initialState = {
     byLikes: null,
     filter: ""
 };
+
 function reducer(state = initialState, action) {
     switch(action.type) {
         case LOAD_DATA:
@@ -32,20 +32,26 @@ function reducer(state = initialState, action) {
         case LIKE:
             return {
                 ...state,
-                movies: state.movies.map((movie, index) =>
-                    index === action.payload.index ? {...movie, likes: movie.likes+1}
-                                                    : movie),
+                movies: state.movies.map((movie, index) => (
+                    index === action.payload.index ? {
+                        ...movie,
+                        likes: movie.likes+1
+                    } : movie
+                )),
             };
         case DISLIKE:
             return {
                 ...state,
-                movies: state.movies.map((movie, index) =>
-                    index === action.payload.index ? {...movie, likes: movie.likes-1}
-                        : movie),
+                movies: state.movies.map((movie, index) => (
+                    index === action.payload.index ? {
+                        ...movie,
+                        likes: movie.likes-1
+                    } : movie
+                )),
             };
         case FILTER_BY_RATING:
             let filteredMoviesByRating, byR;
-            if(!state.byRating){
+            if(!state.byRating) {
                 filteredMoviesByRating = List(state.movies.sort((a, b) => {
                     return a.stars - b.stars;
                 }));
@@ -65,7 +71,7 @@ function reducer(state = initialState, action) {
             };
         case FILTER_BY_LIKES:
             let filteredMoviesByLikes, byL;
-            if(!state.byLikes){
+            if(!state.byLikes) {
                 filteredMoviesByLikes = List(state.movies.sort((a, b) => {
                     return a.likes - b.likes;
                 }));
@@ -77,7 +83,6 @@ function reducer(state = initialState, action) {
                 byL = false;
             }
 
-
             return {
                 ...state,
                 movies: filteredMoviesByLikes,
@@ -86,23 +91,29 @@ function reducer(state = initialState, action) {
         case RATE:
             return {
                 ...state,
-                movies: state.movies.map((movie, index) =>
-                    index === action.payload.index ? {...movie, stars: action.payload.stars}
-                        : movie),
+                movies: state.movies.map((movie) => (
+                    movie.id === action.payload.index ? {
+                        ...movie,
+                        stars: action.payload.stars
+                    } : movie
+                )),
             };
         case DELETE_MOVIE:
             return {
                 ...state,
-                movies: state.movies.filter((movie) =>
-                    movie.id === action.payload.index ? null
-                        : movie),
+                movies: state.movies.filter((movie) => (
+                    movie.id === action.payload.index ? null : movie
+                )),
             };
         case EDIT_MOVIE:
             return {
                 ...state,
-                movies: state.movies.map((movie) =>
-                    movie.id === action.payload.index ? {...movie, ...action.payload.data}
-                        : movie),
+                movies: state.movies.map((movie) => (
+                    movie.id === action.payload.index ? {
+                        ...movie,
+                        ...action.payload.data
+                    } : movie
+                )),
             };
         default:
             return state;

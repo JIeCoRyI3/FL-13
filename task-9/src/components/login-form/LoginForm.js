@@ -16,7 +16,7 @@ class LoginForm extends React.Component {
                 alert('Incorrect password!');
             } else {
                 alert('Successfully login in!');
-                localStorage.setItem('isLogin', '1');
+                window.localStorage.setItem('isLogin', JSON.stringify(true));
                 window.location.href = '/homepage';
             }
         }

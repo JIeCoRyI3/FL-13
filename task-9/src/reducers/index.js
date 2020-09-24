@@ -1,3 +1,6 @@
 import reducer from "./reducerForApp";
+import { combineReducers } from 'redux'
 
-export default reducer;
+export default combineReducers({
+    reducer
+})

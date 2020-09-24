@@ -10,17 +10,17 @@ class RegisterForm extends React.Component {
           alert('Password and confirmed password are not equal');
           return;
       }
-      if(!localStorage.getItem('users')) {
-          localStorage.setItem('users', JSON.stringify( [{ login: '', password: ''}] ));
+      if(!window.localStorage.getItem('users')) {
+          window.localStorage.setItem('users', JSON.stringify( [{ login: '', password: ''}] ));
       }
-      const users = JSON.parse(localStorage.getItem('users'));
+      const users = JSON.parse(window.localStorage.getItem('users'));
       const usersLogins = users.map(user => user.login);
       if(usersLogins.includes(login)) {
           alert('This login has been already used');
           return;
       } else {
           users.push({login: login, password: password});
-          localStorage.setItem('users', JSON.stringify(users));
+          window.localStorage.setItem('users', JSON.stringify(users));
           alert('Successfully registered!');
           window.location.href = '/login';
       }

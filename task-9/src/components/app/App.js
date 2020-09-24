@@ -12,7 +12,6 @@ import {
 } from "react-router-dom";
 import LoginForm from "../login-form";
 import RegisterForm from "../register-form";
-import PrivateRoute from "../../helpers/private-route";
 import Homepage from "../homepage/Homepage";
 import ActorPage from "../actor-page";
 import EditPage from "../edit-movie/EditPage";
@@ -21,8 +20,8 @@ class App extends React.Component {
 
   componentDidMount() {
     this.fetchData();
-    if(!localStorage.getItem('isLogin')) {
-      localStorage.setItem('isLogin', '0');
+    if(!window.localStorage.getItem('isLogin')) {
+      window.localStorage.setItem('isLogin', JSON.stringify(false));
     }
   }
 
@@ -37,12 +36,12 @@ class App extends React.Component {
   };
 
   logOut = () => {
-    localStorage.setItem('isLogin', '0');
+    window.localStorage.setItem('isLogin', JSON.stringify(false));
     window.location.href = '/login';
   };
 
   render() {
-    const isLogin = +localStorage.getItem('isLogin');
+    const isLogin = JSON.parse(window.localStorage.getItem('isLogin'));
     return (
         <Router>
           <header>
@@ -54,15 +53,19 @@ class App extends React.Component {
             </nav>
           </header>
           <Switch>
-            <PrivateRoute exact path="/homepage" component={Homepage}/>
-            <PrivateRoute exact path="/movie" component={MoviePage}/>
-            <PrivateRoute exact path="/actor:id" component={ActorPage}/>
-            <PrivateRoute exact path="/edit-movie" component={EditPage}/>
+            {
+              isLogin && (
+                  <>
+                    <Route exact path="/homepage" component={Homepage}/>
+                    <Route exact path="/movie" component={MoviePage}/>
+                    <Route exact path="/actor/:id" component={ActorPage}/>
+                    <Route exact path="/edit-movie" component={EditPage}/>
+                  </>
+              )
+            }
             <Route exact path="/login" component={LoginForm}/>
             <Route exact path="/register" component={RegisterForm}/>
-            <Route path='/'>
-              <Redirect to='/homepage'/>
-            </Route>
+            <Redirect to='/'/>
           </Switch>
         </Router>
     )
