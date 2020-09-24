@@ -1,0 +1,15 @@
+.info {
+    margin: 0 auto;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+}
+
+.info *{
+    font-size: 15pt;
+    margin-bottom: 20px;
+}
+
+textarea {
+    height: 300px;
+}

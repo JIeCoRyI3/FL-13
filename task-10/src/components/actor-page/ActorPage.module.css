@@ -1,0 +1,13 @@
+.info {
+    margin: 0 auto;
+    width: 800px;
+}
+
+.info *{
+    font-size: 15pt;
+    margin-bottom: 20px;
+}
+
+.actor {
+    width: 50%;
+}
