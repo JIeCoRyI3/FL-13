@@ -35,15 +35,15 @@ class App extends React.Component {
     store.dispatch({ type: 'DISLIKE', payload: { index: index } });
   };
 
-  filterByRating = () => {
+  filterByRating() {
     store.dispatch({ type: 'FILTER_BY_RATING'});
   };
 
-  filterByLikes = () => {
+  filterByLikes() {
     store.dispatch({ type: 'FILTER_BY_LIKES'});
   };
 
-  search = () => {
+  search() {
     store.dispatch({ type: 'FILTER_BY_SEARCH', payload: { filter: document.getElementById('search').value } });
   };
 

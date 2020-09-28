@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './StarMark.module.css';
-import store from "../app/store";
-import {connect} from "react-redux";
-import mapStateToProps from "./selectors";
+import { connect } from "react-redux";
+import { rate } from "./actions";
 
 class StarMark extends React.Component {
 
@@ -10,18 +9,12 @@ class StarMark extends React.Component {
         this.addLogic();
     }
 
-    rate(rating) {
-        store.dispatch({
-            type: 'RATE',
-            payload: {
-                index: this.props.unique,
-                stars: rating
-            }
-        });
-        const uniqueStars = document.querySelector(`.k${this.props.unique}`);
+    rate = (rating) => {
+        this.props.rate(rating, this.props.index);
+        const uniqueStars = document.querySelector(`.k${this.props.index}`);
         const stars = uniqueStars.querySelectorAll('.fa-star');
         stars.forEach((star, index) => {
-            if(index < this.props.movies._tail.array[this.props.unique].stars) {
+            if(index < this.props.stars) {
                 star.classList.remove('far');
                 star.classList.add('fas');
             } else {
@@ -32,8 +25,8 @@ class StarMark extends React.Component {
         this.addLogic();
     };
 
-    addLogic() {
-        const uniqueStars = document.querySelector(`.k${this.props.unique}`);
+    addLogic = () => {
+        const uniqueStars = document.querySelector(`.k${this.props.index}`);
         const stars = uniqueStars.querySelectorAll('.fa-star');
         stars.forEach((star, index) => {
             const handler = () => {
@@ -54,26 +47,32 @@ class StarMark extends React.Component {
         })
     };
 
+    renderFieldStars = () => {
+        return [...new Array(this.props.stars)].map((star, i) => {
+            return <i className='fas fa-star' key={i}></i>
+        });
+    };
+
+    renderEmptyStars = () => {
+        return [...new Array(5 - this.props.stars)].map((star, i) => {
+            return <i className='far fa-star' key={i}></i>
+        });
+    };
+
     render() {
-      let fieldStars = [];
-      let emptyStars = [];
-
-      for(let i = 0; i < this.props.movies._tail.array[this.props.unique].stars; i++){
-          fieldStars.push(<i className='fas fa-star' key={i}></i>);
-      }
-
-      for(let i = 0; i < 5 - this.props.movies._tail.array[this.props.unique].stars; i++){
-          emptyStars.push(<i className='far fa-star' key={i}></i>);
-      }
-    return (
-        <div className={styles.starContainer + ` k${this.props.unique}`}>
-            {fieldStars.map(star => star)}
-            {emptyStars.map(star => star)}
-        </div>
-    )
+        return (
+            <div className={styles.starContainer + ` k${this.props.index}`}>
+                {this.renderFieldStars()}
+                {this.renderEmptyStars()}
+            </div>
+        )
   }
 }
 
-const withStore = connect(mapStateToProps);
+const mapDispatchToProps = {
+    rate,
+};
+
+const withStore = connect(null, mapDispatchToProps);
 
 export default withStore(StarMark);

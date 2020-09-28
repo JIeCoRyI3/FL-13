@@ -1,0 +1,21 @@
+.info {
+    margin: 0 auto;
+    width: 800px;
+}
+
+.info *{
+    font-size: 15pt;
+    margin-bottom: 20px;
+}
+
+h5 {
+    text-align: justify;
+}
+
+.btns * {
+    margin: 20px;
+}
+
+.actors * {
+    margin: 10px;
+}
