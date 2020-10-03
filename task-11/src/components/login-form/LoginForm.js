@@ -30,11 +30,11 @@ class LoginForm extends React.Component {
         const { labels } = this.props;
     return (
         <div className={styles.form}>
-            <label htmlFor='login'>{labels.login}:</label>
+            <label htmlFor='login'>{labels.LOGIN}:</label>
             <input id='login'/>
-            <label htmlFor='login'>{labels.password}:</label>
+            <label htmlFor='login'>{labels.PASSWORD}:</label>
             <input id='password'/>
-            <button className='btn btn-primary' id='confirm-btn' onClick={this.login}>{labels.logIn}</button>
+            <button className='btn btn-primary' id='confirm-btn' onClick={this.login}>{labels.LOG_IN}</button>
         </div>
     )
   }

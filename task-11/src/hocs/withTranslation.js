@@ -1,17 +1,14 @@
-import ua from '../languages/ua';
-import en from '../languages/en';
-import React, {Component} from "react";
+import ua from '../locales/ua';
+import en from '../locales/en';
+import React from "react";
 
-export const withTranslation = (View) => {
-    const lang = window.localStorage.getItem('lang');
-    const translation = lang === 'ua'? ua : en;
-    console.log(translation, lang);
+export const withTranslation = (WrappedComponent) => {
+    const locale = window.localStorage.getItem('lang');
+    const translation = locale === 'ua'? ua : en;
 
-    return class extends Component {
-        render() {
-            return (
-                <View {...this.props} labels={translation}/>
-            )
-        }
+    return function(props) {
+        return (
+            <WrappedComponent {...props} labels={translation}/>
+        )
     }
 };

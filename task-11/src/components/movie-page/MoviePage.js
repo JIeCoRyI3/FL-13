@@ -20,24 +20,24 @@ class MoviePage extends React.Component {
         ));
 
         if(selectedMovie === 'non-movie' || !selectedMovie) {
-          return <h2>{labels.selectFilm}</h2>
+          return <h2>{labels.SELECT_FILM}</h2>
         } else {
           return (
               <div className={styles.info}>
                   <div>
-                      <div>{labels.likes}: {selectedMovie.likes}</div>
-                      <div>{labels.stars}: {selectedMovie.stars}</div>
+                      <div>{labels.LIKES}: {selectedMovie.likes}</div>
+                      <div>{labels.STARS}: {selectedMovie.stars}</div>
                   </div>
                   <div>
-                      <h5>{labels.title}: {selectedMovie.title}</h5>
+                      <h5>{labels.TITLE}: {selectedMovie.title}</h5>
                       <img alt="film poster" src={selectedMovie.posterUrl}/>
-                      <h5>{labels.director}: {selectedMovie.director}</h5>
-                      <h5 className={styles.actors}>{labels.actors}: {actors}</h5>
-                      <h5>{labels.description}: {selectedMovie.description}</h5>
+                      <h5>{labels.DIRECTOR}: {selectedMovie.director}</h5>
+                      <h5 className={styles.actors}>{labels.ACTORS}: {actors}</h5>
+                      <h5>{labels.DESCRIPTION}: {selectedMovie.description}</h5>
                   </div>
                   <div className={styles.btns}>
-                      <Link to='/edit-movie' className='btn btn-success'>{labels.edit}</Link>
-                      <button className='btn btn-danger' onClick={this.deleteMovie}>{labels.delete}</button>
+                      <Link to='/edit-movie' className='btn btn-success'>{labels.EDIT}</Link>
+                      <button className='btn btn-danger' onClick={this.deleteMovie}>{labels.DELETE}</button>
                   </div>
               </div>
           )

@@ -11,16 +11,16 @@ class RegisterForm extends React.Component {
         const confirmedPassword = document.getElementById('confirm-password').value;
         const usersNames = this.props.users.map((user) => user.name);
         if(password !== confirmedPassword) {
-          alert(this.props.labels.passwordNotEqualMessage);
+          alert(this.props.labels.PASSWORD_EQUAL_MESSAGE);
         } else if(usersNames.includes(login)) {
-          alert(this.props.labels.loginMessage);
+          alert(this.props.labels.LOGIN_MESSAGE);
         } else {
             this.props.addUser( {
                 id: Math.floor(Math.random()*100),
                 name: login,
                 password
             });
-            alert(this.props.labels.registeredMessage);
+            alert(this.props.labels.REGISTER_MESSAGE);
         }
     };
 

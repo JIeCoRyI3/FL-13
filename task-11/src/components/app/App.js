@@ -44,10 +44,10 @@ class App extends React.Component {
         <Router>
           <header>
             <nav className={styles.navBar}>
-              {isLogin ? <Link className='btn btn-primary' to='/homepage'>{labels.homepage}</Link> : null}
-              {isLogin ? null : <Link className='btn btn-primary' to='/login'>{labels.login}</Link>}
-              {isLogin ? null : <Link className='btn btn-primary' to='/register'>{labels.register}</Link>}
-              {isLogin ? <button className='btn btn-primary' onClick={this.logOut}>{labels.logOut}</button> : null}
+              {isLogin ? <Link className='btn btn-primary' to='/homepage'>{labels.HOMEPAGE}</Link> : null}
+              {isLogin ? null : <Link className='btn btn-primary' to='/login'>{labels.LOGIN}</Link>}
+              {isLogin ? null : <Link className='btn btn-primary' to='/register'>{labels.REGISTER}</Link>}
+              {isLogin ? <button className='btn btn-primary' onClick={this.logOut}>{labels.LOG_OUT}</button> : null}
               <div className={styles.ua} onClick={this.translate('ua')}/>
               <div className={styles.en} onClick={this.translate('en')}/>
             </nav>

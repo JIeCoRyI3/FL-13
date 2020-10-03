@@ -39,28 +39,28 @@ class EditPage extends React.Component {
                   }}
                   render={({ handleSubmit, values }) => (
                       <form className={styles.info} onSubmit={handleSubmit}>
-                          <label htmlFor='title'>{labels.title}:</label>
+                          <label htmlFor='title'>{labels.TITLE}:</label>
                           <Field
                               name="title"
                               component="input"
                               type="text"
-                              placeholder={labels.title}
+                              placeholder={labels.TITLE}
                           />
-                          <label htmlFor='director'>{labels.director}:</label>
+                          <label htmlFor='director'>{labels.DIRECTOR}:</label>
                           <Field
                               name="director"
                               component="input"
                               type="text"
-                              placeholder={labels.director}
+                              placeholder={labels.DIRECTOR}
                           />
-                          <label htmlFor='description'>{labels.description}:</label>
+                          <label htmlFor='description'>{labels.DESCRIPTION}:</label>
                           <Field
                               name="description"
                               component="textarea"
                               type="text"
-                              placeholder={labels.description}
+                              placeholder={labels.DESCRIPTION}
                           />
-                          <Link to='/homepage'><button className='btn btn-success' onClick={this.editMovie(values)}>{labels.saveChanges}</button></Link>
+                          <Link to='/homepage'><button className='btn btn-success' onClick={this.editMovie(values)}>{labels.SAVE_CHANGES}</button></Link>
                       </form>
                   )}
               />

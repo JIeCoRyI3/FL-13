@@ -37,9 +37,9 @@ class Homepage extends React.Component {
     return (
         <div className={styles.container}>
           <div className={styles.filterBar}>
-            <h3 onClick={this.filterByRating}>{labels.filterByRating}</h3>
-            <h3 onClick={this.filterByLikes}>{labels.filterByLikes}</h3>
-            <input className={styles.search} id="search" placeholder={`${labels.search}...`} onChange={this.search}/>
+            <h3 onClick={this.filterByRating}>{labels.FILTER_BY_RATING}</h3>
+            <h3 onClick={this.filterByLikes}>{labels.FILTER_BY_LIKES}</h3>
+            <input className={styles.search} id="search" placeholder={`${labels.SEARCH}...`} onChange={this.search}/>
           </div>
           <div className={styles.grid}>
             {this.props.movies.map((movie, index) => {
@@ -50,7 +50,7 @@ class Homepage extends React.Component {
                       <div className={styles.likeBar}>
                         <i className="fas fa-thumbs-up" onClick={this.like(movie)} style={{color: "green"}}></i>
                         <i className="fas fa-thumbs-down" onClick={this.dislike(movie)} style={{color: "red"}}></i>
-                        <p>{labels.likes}: {movie.likes}</p>
+                        <p>{labels.LIKES}: {movie.likes}</p>
                       </div>
                       <div className={styles.image} style={{backgroundImage: `url(${movie.posterUrl})`}} />
                     </div>
