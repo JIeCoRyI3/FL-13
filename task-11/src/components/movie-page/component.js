@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './MoviePage.module.css';
+import styles from './component.module.css';
 import {Link} from "react-router-dom";
 
 class MoviePage extends React.Component {
