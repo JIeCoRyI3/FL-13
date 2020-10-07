@@ -6,7 +6,7 @@ export const filterSelector = (state) => {
     }));
 };
 
-export const filterActors = (state) => {
+export const filterActors = (state) => { //export 
     if(state.selectedMovie === 'non-movie') {
         return null;
     } else {
@@ -16,3 +16,14 @@ export const filterActors = (state) => {
         });
     }
 };
+
+const mapStateToProps = (state) => {
+    const searchData = filterSelector(state);
+    const movieActors = filterActors(state);
+    return {
+        selectedMovie: searchData.toJS()[state.selectedMovie],
+        actors: List(movieActors),
+    };
+};
+
+export default mapStateToProps;
